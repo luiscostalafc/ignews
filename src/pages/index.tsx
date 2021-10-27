@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { SubscribleButton } from "../components/SubscribleButton";
 
 import styles from './home.module.scss';
 
@@ -17,6 +18,7 @@ export default function Home() {
             Get acess to all the publications <br />
             <span>for $9.90 month</span>
           </p>
+          <SubscribleButton />
         </section>
 
 
