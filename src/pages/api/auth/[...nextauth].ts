@@ -12,6 +12,10 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET,
       scope: "read:user",
     }),
+    Providers.Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
   ],
   callbacks: {
     async signIn(user, account, profile) {
@@ -22,27 +26,17 @@ export default NextAuth({
           q.If(
             q.Not(
               q.Exists(
-                q.Match(
-                  q.Index('user_by_email'),
-                  q.Casefold(user.email)
-                )
+                q.Match(q.Index("user_by_email"), q.Casefold(user.email))
               )
             ),
-            q.Create(
-              q.Collection('users'),
-              { data: { email }}
-            ),
-            q.Get(
-              q.Match(
-                q.Index('user_by_email'),
-                q.Casefold(user.email)
-              )
-            )
+            q.Create(q.Collection("users"), { data: { email } }),
+            q.Get(q.Match(q.Index("user_by_email"), q.Casefold(user.email)))
           )
         );
 
         return true;
-      } catch {
+      } catch (err) {
+        console.log(err);
         return false;
       }
     },
