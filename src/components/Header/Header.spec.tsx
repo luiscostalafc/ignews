@@ -23,6 +23,10 @@ describe("Header component", () => {
   it("renders correctly", () => {
     render(<Header />);
 
+    //Ferramenta para saber as opções disponíveis para selecionar um elemento:
+
+    //screen.logTestingPlaygroundURL()
+
     expect(screen.getByText("Home")).toBeInTheDocument();
     expect(screen.getByText("Posts")).toBeInTheDocument();
   });
