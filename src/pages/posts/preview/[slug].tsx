@@ -75,7 +75,7 @@ export const getStaticSideProps: GetStaticProps = async ({ params }) => {
     content: RichText.asHtml(
       (response.data.content as Array<string>).splice(0, 3)
     ),
-    updateAt: new Date(response.last_publication_date).toLocaleDateString(
+    updatedAt: new Date(response.last_publication_date).toLocaleDateString(
       "pt-BR",
       {
         day: "2-digit",
